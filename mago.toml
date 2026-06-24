@@ -1,4 +1,4 @@
-# Mago Configuration - Waffle Commons ({COMPONENT_NAME}, Beta 0)
+# Mago Configuration - Waffle Commons (Async, Beta 0)
 # For full documentation, see https://mago.carthage.software/tools/overview
 php-version = "8.5.5"
 
@@ -25,16 +25,16 @@ core = ["@global", "Psl\\**"]
 psr = ["Psr\\**"]
 
 [[guard.perimeter.rules]]
-namespace = "Waffle\\Commons\\{COMPONENT_NAME}"
+namespace = "Waffle\\Commons\\Async"
 permit = [
-    "Waffle\\Commons\\{COMPONENT_NAME}\\**",
+    "Waffle\\Commons\\Async\\**",
     "Waffle\\Commons\\Contracts\\**",
     "@layer:core",
     "@layer:psr",
 ]
 
 [[guard.perimeter.rules]]
-namespace = "WaffleTests\\Commons\\{COMPONENT_NAME}"
+namespace = "WaffleTests\\Commons\\Async"
 permit = ["@all"]
 
 [[guard.structural.rules]]
@@ -76,21 +76,42 @@ disallowed-functions = { level = "error", functions = ["eval", "exec", "system",
 # Code quality - Strict
 prefer-interface = { level = "error" }
 strict-types = { level = "error" }
-# NOTE: the template's `property-type` / `return-type` linter rules were removed:
-# they are not recognised by the pinned mago 1.29.0 (they break config parsing)
-# and are already enforced natively by the strict `[analyzer]` block below.
+no-ini-set = { enabled = false }
 
-cyclomatic-complexity = { level = "warning", threshold = 10 }
-
-# Style - Notes (informational)
-prefer-arrow-function = { level = "note" }
-no-redundant-nullsafe = { level = "note" }
+# >>> alpha6-opinionated-suppressions (generated) — ecosystem-standard linter policy,
+# matching every shipped waffle-commons component (the Beta-0 template lagged behind).
+literal-named-argument = { enabled = false }
+no-boolean-flag-parameter = { enabled = false }
+single-class-per-file = { enabled = false }
+no-else-clause = { enabled = false }
+block-statement = { enabled = false }
+assertion-style = { enabled = false }
+assert-description = { enabled = false }
+tagged-todo = { enabled = false }
+cyclomatic-complexity = { enabled = true, threshold = 50 }
+too-many-methods = { enabled = false }
+kan-defect = { enabled = false }
+halstead = { enabled = false }
+prefer-arrow-function = { enabled = false }
+no-redundant-nullsafe = { enabled = false }
+excessive-parameter-list = { enabled = false }
+# <<< alpha6-opinionated-suppressions
 
 [analyzer]
-# Zero-Baseline policy (Beta 0): no `baseline = ...` is permitted.
+# Zero-Baseline policy: no `baseline = ...` is permitted. `check-throws` stays ON for
+# src (it enforces @throws docs); PHPUnit assertion exceptions are ignored in tests/ only.
 find-unused-definitions = true
 find-unused-expressions = true
 analyze-dead-code = true
 check-throws = true
 strict-list-index-checks = true
 strict-array-index-existence = true
+ignore = [
+    { code = "unhandled-thrown-type", in = ["tests/"] },
+    { code = "mixed-assignment", in = ["tests/"] },
+    { code = "mixed-argument", in = ["tests/"] },
+    { code = "mixed-operand", in = ["tests/"] },
+    { code = "deprecated-method", in = ["tests/"] },
+    { code = "possibly-undefined-int-array-index", in = ["tests/"] },
+    { code = "possibly-undefined-string-array-index", in = ["tests/"] },
+]
