@@ -20,4 +20,3 @@ vendor/
 
 # Build artifacts
 var/
-composer.lock
