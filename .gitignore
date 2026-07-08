@@ -18,5 +18,5 @@ scripts/
 # Vendors
 vendor/
 
-# Cache
+# Build artifacts
 var/

@@ -1,16 +1,16 @@
 {
-    "name": "waffle-commons/{COMPONENT_NAME}",
-    "description": "{COMPONENT_NAME} component for Waffle framework.",
+    "name": "waffle-commons/async",
+    "description": "Fiber-based finish-request deferred task runner for Waffle Commons: short post-response work lifted out of the user-perceived latency path, under a bounded per-request budget.",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Waffle\\Commons\\{COMPONENT_NAME}\\": "src/"
+            "Waffle\\Commons\\Async\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "WaffleTests\\Commons\\{COMPONENT_NAME}\\": "tests/src/"
+            "WaffleTests\\Commons\\Async\\": "tests/src/"
         }
     },
     "authors": [
@@ -22,6 +22,7 @@
     "minimum-stability": "stable",
     "require": {
         "php": "^8.5",
+        "psr/log": "^3.0",
         "waffle-commons/contracts": "self.version"
     },
     "require-dev": {
@@ -39,10 +40,6 @@
         "guard": "vendor/bin/mago guard",
         "igor": "vendor/bin/igor-php .",
         "phpunit": "vendor/bin/phpunit --log-junit var/data/phpunit-coverage/junit.xml --coverage-html var/data/phpunit-coverage",
-        "benchmark": [
-            "Composer\\Config::disableProcessTimeout",
-            "vendor/bin/phpbench run --report=default_report --output=waffle_html --retry-threshold=10"
-        ],
         "mago": [
             "@formatter",
             "@linter",
@@ -57,10 +54,10 @@
             "@tests"
         ],
         "ci": [
-          "@mago",
-          "@tests",
-          "composer audit",
-          "vendor/bin/psalm --taint-analysis"
+            "@mago",
+            "@tests",
+            "composer audit",
+            "vendor/bin/psalm --taint-analysis"
         ]
     },
     "config": {
