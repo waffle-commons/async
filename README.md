@@ -10,7 +10,7 @@
 Waffle Async Component
 =======================
 
-> **Release:** `0.1.0-beta5` &nbsp;|&nbsp; [`CHANGELOG.md`](./CHANGELOG.md)
+> **Release:** `0.1.0-beta6` &nbsp;|&nbsp; [`CHANGELOG.md`](./CHANGELOG.md)
 > **RFC:** RFC-015 (`ASYNC-01`) — Fiber-based finish-request task deferral
 
 A bounded, worker-safe runner that lifts short post-response work — mail delivery, webhook fan-out, audit

@@ -5,6 +5,16 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 Released in lockstep with the Waffle Commons umbrella tag.
 
+## [0.1.0-beta6] — 2026-08-03
+
+**Theme: first full documentation pack.**
+
+### Added
+- README, LICENSE, CONTRIBUTING, SECURITY, CODE_OF_CONDUCT and CODEOWNERS. The component shipped in 0.1.0-beta5 without them; the README documents the real `DeferredTaskRunner` surface, the Fiber finish-request lifecycle and the worker-safety rules, verified against the source.
+
+### Documentation
+- The README now links into the central Diátaxis documentation tree (DOC-02).
+
 ## [0.1.0-beta5] — 2026-07-08
 
 **Theme: Fiber-based finish-request deferred tasks (AXE 2 / RFC-015 · ASYNC-01).**
